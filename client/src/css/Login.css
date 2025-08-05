@@ -1,0 +1,75 @@
+.method
+{
+    font-size: clamp(22px, 5vw, 26px);
+}
+
+.sign
+{
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.sign > div
+{
+    padding: 10px 5px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+.signinput
+{
+    width: clamp(220px,40vw,370px);
+}
+
+#email, #user, #pass
+{
+    position: relative;
+    z-index: 1;
+}
+
+#email input, #username input, #pass input
+{
+    position: relative;
+    z-index: 2;
+}
+
+#username:has(input:not(:placeholder-shown))::before, #email:has(input:not(:placeholder-shown))::before, #pass:has(input:not(:placeholder-shown))::before
+{
+    background-color: black;
+    transform: translateY(-100%) scale(0.7);
+}
+
+#username::before
+{
+    content: 'Username';
+    position: absolute;
+    color: var(--placeholder-color);
+    background-color: transparent;
+    transition: all 0.3s ease-in-out;
+}
+
+#email::before
+{
+    content: 'Email';
+    position: absolute;
+    color: var(--placeholder-color);
+    background-color: transparent;
+    transition: all 0.3s ease-in-out;
+}
+
+#pass::before
+{
+    content: 'Password';
+    position: absolute;
+    color: var(--placeholder-color);
+    background-color: transparent;
+    transition: all 0.3s ease-in-out;
+}
+
+#username:focus-within:before, #email:focus-within:before, #pass:focus-within:before
+{
+    background-color: black;
+    transform: translateY(-100%) scale(0.7);
+}

@@ -1,0 +1,26 @@
+#otp input
+{
+    position: relative;
+    z-index: 2;
+}
+
+#otp:has(input:not(:placeholder-shown))::before
+{
+    background-color: black;
+    transform: translateY(-100%) scale(0.7);
+}
+
+#otp::before
+{
+    content: 'OTP';
+    position: absolute;
+    color: rgba(255, 255, 255, 0.7);
+    background-color: transparent;
+    transition: all 0.3s ease-in-out;
+}
+
+#otp:focus-within:before
+{
+    background-color: black;
+    transform: translateY(-100%) scale(0.7);
+}
