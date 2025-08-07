@@ -1,4 +1,16 @@
 .contactcon
 {
-    width: clamp(400px,25vw,600px);
+    width: clamp(320px,28.125rem,450px);
+    border-right: 3px solid var(--comp-color);
+}
+
+.contactcon>div:nth-child(2)
+{
+    box-shadow: 0 4px 5px 1px var(--comp-color);
+
+}
+
+.contact-item
+{
+    border-bottom: 1px solid var(--comp-color);
 }

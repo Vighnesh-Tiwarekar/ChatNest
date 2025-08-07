@@ -5,11 +5,16 @@ import { loginContext } from './context/LoginContext'
 import { RouterProvider } from 'react-router-dom'
 import { router } from './components/Router'
 import Spinner from './components/Spinner'
+import io from 'socket.io-client'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+
+const queryClient = new QueryClient()
 
 function App() {
 
   const [islogin, setlogin] = useState(false)
   const [loading, setLoading] = useState(true)
+  const socket = io(import.meta.env.VITE_SOCKET_URL)
 
   useEffect(() => {
     const checkLogin = async () => {
@@ -23,18 +28,19 @@ function App() {
 
   }, [])
 
-  if(loading)
-  {
-    return <Spinner/>
+  if (loading) {
+    return <Spinner />
   }
 
   return (
-    <loginContext.Provider value={{ islogin, setlogin }}>
+    <QueryClientProvider client={queryClient}>
+      <loginContext.Provider value={{ islogin, setlogin }}>
 
-      <RouterProvider router={router}>
-      </RouterProvider>
+        <RouterProvider router={router}>
+        </RouterProvider>
 
-    </loginContext.Provider>
+      </loginContext.Provider>
+    </QueryClientProvider>
   )
 }
 

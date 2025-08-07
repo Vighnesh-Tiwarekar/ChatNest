@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+@theme {
+  --breakpoint-mob: 28.125rem;
+}
+
 :root
 {
     --comp-color: rgb(0, 255, 255);
@@ -9,6 +13,7 @@
 body
 {
     background-color: black;
+    color: white;
 }
 
 input
