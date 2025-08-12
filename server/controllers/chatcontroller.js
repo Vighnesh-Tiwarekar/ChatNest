@@ -17,7 +17,6 @@ export const get_contacts = async (req, res) => {
             return room.users.find(user => user !== username)
         })
 
-        console.log(contacts)
 
         // const contacts = await userlogin.find(
         //     { username: { $ne: req.username } }, 

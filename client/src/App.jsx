@@ -14,7 +14,6 @@ function App() {
 
   const [islogin, setlogin] = useState(false)
   const [loading, setLoading] = useState(true)
-  const socket = io(import.meta.env.VITE_SOCKET_URL)
 
   useEffect(() => {
     const checkLogin = async () => {

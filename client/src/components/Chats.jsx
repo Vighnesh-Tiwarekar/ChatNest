@@ -1,9 +1,14 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import useMessage from '../hooks/useMessages'
 
 const Chats = ({ contact }) => {
 
   const { data, isLoading, error } = useMessage(contact)
+
+  useEffect(()=> {
+
+
+  },[])
 
   if (contact) {
 

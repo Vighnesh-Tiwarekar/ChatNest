@@ -8,6 +8,7 @@ import loginrouter from './routes/loginroute.js';
 import { connectdb } from './config/database.js';
 import chatrouter from './routes/chatroute.js';
 import { validate_token } from './middlewares/validate_token.js';
+import service_router from './routes/serviceroute.js';
 
 const app = express()
 
@@ -32,6 +33,8 @@ app.use('/apis/chatnest/login', loginrouter)
 
 app.use('/apis/chatnest/chat', validate_token , chatrouter)
 
+app.use('/apis/chatnest/services', validate_token, service_router)
+
 const server = http.createServer(app)
 
 const io = new Server(server, {
@@ -45,7 +48,10 @@ io.on('connection', (socket) => {
 
     console.log('A user connected:', socket.id)
 
-    
+    socket.on('join-room', (data)=>{
+        
+    })
+
 })
 
 server.listen(port, () => {
