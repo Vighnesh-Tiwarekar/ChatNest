@@ -17,8 +17,11 @@ export const get_messages = async(contact_name) => {
             }
         );
 
-        if(res.status == 200)
+        console.log('Mesages', res)
+
+        if(res.status == 202)
         {
+            console.log('success')
             return res.data
         }
 

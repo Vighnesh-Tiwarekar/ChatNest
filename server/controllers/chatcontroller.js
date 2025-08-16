@@ -36,11 +36,17 @@ export const get_messages = async (req, res) => {
 
     try {
 
-        const messages = await chatMessages.find({ chatRoom: req.chatRoom })
+        console.log('requesting messages')
 
         if (!req.chatRoom) {
             return res.status(400).json({ message: 'Missing chatRoom ID' })
         }
+
+        console.log('jj')
+
+        const messages = await chatMessages.find({ chatRoom: req.chatRoom })
+
+        console.log(messages)
 
         res.status(202).json(messages)
 
@@ -50,3 +56,17 @@ export const get_messages = async (req, res) => {
         res.status(500).json({ message: 'Internal Server Error' })
     }
 }
+
+export const store_message = async (sender, room, mssg) => {
+  try {
+    const savedMessage = await chatMessages.create({
+      chatRoom: room._id,
+      sender: sender,
+      message: mssg
+    });
+    return savedMessage;
+  } catch (err) {
+    console.log(`Error: ${err}`);
+    return null;
+  }
+};

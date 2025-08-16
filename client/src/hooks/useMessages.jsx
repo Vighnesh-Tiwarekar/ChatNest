@@ -7,7 +7,7 @@ export default function useMessage(contact) {
 
     return useQuery({
         queryKey: ['friend',contact],
-        queryFn: get_messages(contact),
+        queryFn: () => get_messages(contact),
         enabled: !!contact
     })
 

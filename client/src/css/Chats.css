@@ -1,0 +1,20 @@
+.mssg
+{
+    background-color: gray;
+    width: fit-content;
+    padding: 5px 15px 10px 15px;
+    border-radius: 20px;
+    margin-bottom: 10px;
+
+}
+
+.receive
+{
+    background-color: blue;
+    align-self: flex-end;
+}
+
+.send
+{
+    background-color: red;
+}
