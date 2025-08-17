@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect } from 'react'
-import { Login } from './Login'
-import OTP_Verification from './OTP_Verification'
+import { Login } from '../components/Login'
+import OTP_Verification from '../components/OTP_Verification'
 import {userContext} from '../context/UserContext.js'
 import { useNavigate } from 'react-router-dom'
 import { loginContext } from '../context/LoginContext.js'

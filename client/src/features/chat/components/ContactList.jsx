@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import '../../../shared/css/ContactList.css'
-import useContacts from '../hooks/useContacts'
+import useContacts from '../../auth/hooks/useContacts'
 import Spinner from '../../../shared/ui_components/Spinner'
 
 const Contacts = ({ contacts, search, setcontact }) => {

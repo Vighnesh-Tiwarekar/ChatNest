@@ -1,7 +1,7 @@
-import { encrypt } from '../functions/encryption.js';
-import { validateotp, validatepass } from '../functions/validation.js';
-import { generate_token } from '../functions/generatetoken.js';
-import { sendmail } from '../functions/sendgmail.js';
+import { encrypt } from '../utils/encryption.js';
+import { validateotp, validatepass } from '../utils/validation.js';
+import { generate_token } from '../utils/generatetoken.js';
+import { sendmail } from '../utils/sendgmail.js';
 import jwt from 'jsonwebtoken'
 import { temp_otp, userlogin } from '../schema/loginschema.js';
 

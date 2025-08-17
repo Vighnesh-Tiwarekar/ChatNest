@@ -1,10 +1,8 @@
 import React from 'react'
 import { createBrowserRouter } from 'react-router-dom'
-import ProtectedRoutes from './ProtectedRoutes'
+import ProtectedRoutes from '../../../routes/ProtectedRoutes'
 import ChatPage from './ChatPage'
-import { Login } from './Login'
-import OTP_Verification from './OTP_Verification'
-import Sign from './Sign'
+import Sign from '../pages/Sign'
 
 
 export const router =  createBrowserRouter([
