@@ -5,22 +5,22 @@ import { sign_in, sign_up } from '../services/sign'
 import { loginContext } from '../context/LoginContext'
 import { useNavigate } from 'react-router-dom'
 
-const Signin = ({uservalue}) => {
+const Signin = ({ uservalue }) => {
 
   const [mssg, setmssg] = useState('')
   const loginvalue = useContext(loginContext)
   const navigate = useNavigate();
 
-  const handleSignIn = async(e) => {
+  const handleSignIn = async (e) => {
 
     e.preventDefault();
-    sign_in(uservalue.userinfo,setmssg, loginvalue.setlogin,navigate);
+    sign_in(uservalue.userinfo, setmssg, loginvalue.setlogin, navigate);
 
   }
 
   return (
     <>
-      <form className='sign' action="" onSubmit={(e)=>{handleSignIn(e)}}>
+      <form className='sign' action="" onSubmit={(e) => { handleSignIn(e) }}>
 
         <div className='inputbox' id='email'>
           <input className='signinput' type="email" placeholder=' ' value={uservalue.userinfo.email}
@@ -55,14 +55,14 @@ const Signin = ({uservalue}) => {
   )
 }
 
-const Signup = ({uservalue}) => {
+const Signup = ({ uservalue }) => {
 
   const [mssg, setmssg] = useState('')
 
-  const handleSignUp = async(e) => {
+  const handleSignUp = async (e) => {
 
     e.preventDefault();
-    sign_up(uservalue.userinfo,setmssg, uservalue.setisotp);
+    sign_up(uservalue.userinfo, setmssg, uservalue.setisotp);
 
   }
 
@@ -91,7 +91,7 @@ const Signup = ({uservalue}) => {
         </div>
 
         <div className='inputbox' id='pass'>
-          <input required className='signinput ' type="text" placeholder=' ' value={uservalue.userinfo.password}
+          <input required className='signinput ' type="password" placeholder=' ' value={uservalue.userinfo.password}
             onChange={(e) => {
               uservalue.setuserinfo(prevUser => ({
                 ...prevUser,
@@ -119,24 +119,6 @@ export const Login = () => {
 
   const uservalue = useContext(userContext)
 
-  useEffect(() => {
-
-    const checkToken = async () => {
-
-      const status = validate();
-
-      if (status == 200) {
-        loginvalue.setlogin(true)
-      }
-      else {
-        loginvalue.setlogin(false)
-      }
-
-    }
-
-
-  }, [])
-
   return (
     <div className='flex items-center h-[100vh]'>
 
@@ -144,13 +126,29 @@ export const Login = () => {
 
         <section className='text-center font-extrabold border-b-[1px] flex justify-around method'>
 
-          <div className='w-full p-[15px] txteffect glass' onClick={() => setsignmethod('in')}>
+          <div className='w-full p-[15px] txteffect glass' onClick={() => {
+            setsignmethod('in')
+            uservalue.setuserinfo({
+              username: '',
+              email: '',
+              password: ''
+            });
+          }
+          }>
             Sign In
           </div>
 
           <div className='border-x-[1px]'></div>
 
-          <div className='w-full p-[15px] txteffect glass' onClick={() => setsignmethod('up')}>
+          <div className='w-full p-[15px] txteffect glass' onClick={() => {
+            setsignmethod('up')
+            uservalue.setuserinfo({
+              username: '',
+              email: '',
+              password: ''
+            });
+          }
+          }>
             Sign Up
           </div>
 
