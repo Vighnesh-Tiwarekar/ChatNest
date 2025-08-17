@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
-import '../css/Login.css'
+import '../../../shared/css/Login.css'
 import { userContext } from '../context/UserContext'
-import { sign_in, sign_up } from '../functions/sign'
+import { sign_in, sign_up } from '../services/sign'
 import { loginContext } from '../context/LoginContext'
 import { useNavigate } from 'react-router-dom'
 

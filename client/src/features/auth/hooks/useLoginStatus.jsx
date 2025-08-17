@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { validate } from "../functions/validate"
+import { validate } from "../services/validate"
 
 
 export default function useLoginStatus() {

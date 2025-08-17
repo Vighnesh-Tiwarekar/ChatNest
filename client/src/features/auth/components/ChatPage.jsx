@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import '../css/ChatPage.css'
+import '../../../shared/css/ChatPage.css'
 import ContactList from './ContactList'
 import Chats from './Chats'
 import Navbar from './Navbar'
-import socket from '../functions/socket'
-import { get_name } from '../functions/name'
+import socket from '../services/socket'
+import { get_name } from '../services/name'
 
 const ChatPage = () => {
 

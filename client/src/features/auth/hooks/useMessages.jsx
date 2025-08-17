@@ -1,4 +1,4 @@
-import { get_messages } from "../functions/messages";
+import { get_messages } from "../services/messages";
 import { useQuery } from '@tanstack/react-query';
 
 

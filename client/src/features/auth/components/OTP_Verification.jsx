@@ -1,8 +1,8 @@
 import React, { useContext, useState } from 'react'
-import '../css/OTP_Verification.css'
+import '../../../shared/css/OTP_Verification.css'
 import { userContext } from '../context/UserContext.js'
 import {loginContext} from '../context/LoginContext.js'
-import { otp_resend, otp_verify } from '../functions/otp.js'
+import { otp_resend, otp_verify } from '../services/otp.js'
 import { useNavigate } from 'react-router-dom'
 
 const OTP_Verification = () => {

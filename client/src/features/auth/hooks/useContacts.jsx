@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { get_contacts } from "../functions/contacts"
+import { get_contacts } from "../services/contacts"
 
 
 const useContact = () => {

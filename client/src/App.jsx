@@ -1,11 +1,10 @@
 import { useEffect, useState } from 'react'
-import './css/App.css'
-import { validate } from './functions/validate'
-import { loginContext } from './context/LoginContext'
+import './shared/css/App.css'
+import { validate } from './features/auth/services/validate'
+import { loginContext } from './features/auth/context/LoginContext'
 import { RouterProvider } from 'react-router-dom'
-import { router } from './components/Router'
-import Spinner from './components/Spinner'
-import io from 'socket.io-client'
+import { router } from './features/auth/components/Router'
+import Spinner from './shared/ui_components/Spinner'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
 const queryClient = new QueryClient()
