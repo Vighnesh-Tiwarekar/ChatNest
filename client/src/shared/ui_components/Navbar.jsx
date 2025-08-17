@@ -1,6 +1,6 @@
 import React from 'react'
-import '../../../shared/css/Navbar.css'
-import friends from '../../../assets/friends.png'
+import '../css/Navbar.css'
+import friends from '../../assets/friends.png'
 
 const Navbar = ({setopen_pg}) => {
   return (

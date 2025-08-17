@@ -1,8 +1,8 @@
 import React from 'react'
 import { createBrowserRouter } from 'react-router-dom'
-import ProtectedRoutes from '../../../routes/ProtectedRoutes'
-import ChatPage from './ChatPage'
-import Sign from '../pages/Sign'
+import ProtectedRoutes from './ProtectedRoutes'
+import ChatPage from '../features/chat/pages/ChatPage'
+import Sign from '../features/auth/pages/Sign'
 
 
 export const router =  createBrowserRouter([

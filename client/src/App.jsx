@@ -3,7 +3,7 @@ import './shared/css/App.css'
 import { validate } from './features/auth/services/validate'
 import { loginContext } from './features/auth/context/LoginContext'
 import { RouterProvider } from 'react-router-dom'
-import { router } from './features/auth/components/Router'
+import { router } from './routes/Router'
 import Spinner from './shared/ui_components/Spinner'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
