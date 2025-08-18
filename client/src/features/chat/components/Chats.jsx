@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useRef } from 'react'
 import useMessage from '../hooks/useMessages'
 import { useState } from 'react';
 import socket from '../services/socket';
@@ -10,6 +10,12 @@ const Chats = ({ contact, name }) => {
   const { data, isLoading, error } = useMessage(contact);
   const [Messages, setMessages] = useState([])
   const [mssg, setmssg] = useState('')
+
+  const bottomRef = useRef(null);
+
+  useEffect(() => {
+    bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
+  }, [Messages]);
 
   useEffect(() => {
     if (data) {
@@ -46,40 +52,44 @@ const Chats = ({ contact, name }) => {
 
     return (
 
-      <main className='grow-1 relative'>
+      <main className='flex flex-col flex-1 h-full justify-between'>
 
-        <div className='bg-gray-500 font-bold p-[15px] text-[22px]'>
+        <section className='glass font-bold p-[15px] text-[22px] h-fit'>
           {contact}
-        </div>
+        </section>
 
-        <div className=' px-[15px] py-[15px]'>
+
+        <section className='flex-1 overflow-auto no-scrollbar mssg-con px-[15px] py-[15px]'>
 
           <div className='flex flex-col'>
 
             {Messages ? Messages.map((message, index) => (
-              < div key={message._id} className={`mssg ${message.sender == name ? 'send' : 'receive'}`} >
+              < div key={message._id} className={`mssg txteffect no-hover glass ${message.sender == name ? 'send' : 'receive'}`} >
                 {message.message}
               </div >
             )) : 'No messages yet'}
 
+            <div ref={bottomRef} />
+
           </div>
 
-          <section className='left-[1%] bottom-[15px] absolute w-[98%]'>
+        </section>
 
-            <div className='inputbox w-full rounded-[20px] px-[5px] relative'>
 
-              <input type="text" className='w-full p-[8px]' value={mssg}
-                onChange={(e) => setmssg(e.target.value)} />
+        <section className='w-full px-[8px] pb-[13px]'>
 
-              <div className='absolute right-[8px] top-[25%]' onClick={sendmessage}>
-                <img className='h-[22px]' src={send} alt="" />
-              </div>
+          <div className='inputbox w-full rounded-[20px] px-[5px] relative'>
 
+            <input type="text" className='w-full p-[8px]' value={mssg}
+              onChange={(e) => setmssg(e.target.value)} />
+
+            <div className='absolute right-[8px] top-[25%]' onClick={sendmessage}>
+              <img className='h-[22px]' src={send} alt="" />
             </div>
 
-          </section>
+          </div>
 
-        </div>
+        </section>
 
       </main>
     )

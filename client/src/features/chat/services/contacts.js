@@ -16,7 +16,6 @@ export const get_contacts = async () => {
 
         if(res.status == 201)
         {
-            console.log(res.data)
             return res.data
         }
 

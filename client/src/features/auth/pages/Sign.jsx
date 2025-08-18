@@ -14,14 +14,14 @@ const Sign = () => {
     password: ''
   })
   
-  const navigate = useNavigate();
-  const loginvalue = useContext(loginContext)
+  // const navigate = useNavigate();
+  // const loginvalue = useContext(loginContext)
   
-    useEffect(() => {
-    if (loginvalue.islogin) {
-      navigate('/')
-    }
-  }, [loginvalue.islogin])
+  //   useEffect(() => {
+  //   if (loginvalue.islogin) {
+  //     navigate('/')
+  //   }
+  // }, [loginvalue.islogin])
 
   return (
     <userContext.Provider value={{setisotp, userinfo, setuserinfo}}>

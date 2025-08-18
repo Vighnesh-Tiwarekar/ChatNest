@@ -7,7 +7,7 @@ const Contacts = ({ contacts, search, setcontact }) => {
   return (
     <div className="contact-list">
       {contacts.filter(user => user.toLowerCase().includes(search.toLowerCase())).map((user, index) => (
-        <div key={index} className="contact-item p-[18px]" onClick={()=>setcontact(user)}>
+        <div key={index} className="contact-item p-[18px] glass txteffect" onClick={()=>setcontact(user)}>
           {user}
         </div>
       ))}

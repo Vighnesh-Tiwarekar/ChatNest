@@ -14,7 +14,7 @@ const ChatPage = () => {
   const [name, setname] = useState('')
 
   useEffect(() => {
-    console.log(open_pg)
+    
     if (window.matchMedia("(max-width: 450px)").matches) {
       setmobview(true)
     }
@@ -51,7 +51,7 @@ const ChatPage = () => {
           <Navbar setopen_pg={setopen_pg}></Navbar>
         </aside>
 
-        <section className='chatsec hidden mob:flex'>
+        <section className='chatsec flex'>
           {!open_pg && <ContactList setcontact={setcontact}></ContactList>}
           <Chats contact={contact} name={name}></Chats>
         </section>

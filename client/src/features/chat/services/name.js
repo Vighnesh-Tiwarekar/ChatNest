@@ -16,7 +16,6 @@ export const get_name = async () => {
 
         if(res.status == 200)
         {
-            console.log(res.data)
             return res.data
         }
 

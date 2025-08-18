@@ -4,6 +4,10 @@
   --breakpoint-mob: 28.125rem;
 }
 
+@utility no-scrollbar {
+  @apply [scrollbar-width:none] [&::-webkit-scrollbar]:hidden;
+}
+
 :root
 {
     --comp-color: rgb(0, 255, 255);
