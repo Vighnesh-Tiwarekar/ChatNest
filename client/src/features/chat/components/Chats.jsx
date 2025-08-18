@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useLayoutEffect, useRef } from 'react'
 import useMessage from '../hooks/useMessages'
 import { useState } from 'react';
 import socket from '../services/socket';
@@ -13,8 +13,8 @@ const Chats = ({ contact, name }) => {
 
   const bottomRef = useRef(null);
 
-  useEffect(() => {
-    bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
+  useLayoutEffect(() => {
+    bottomRef.current?.scrollIntoView({ behavior: 'auto' });
   }, [Messages]);
 
   useEffect(() => {

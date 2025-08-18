@@ -15,7 +15,7 @@ const Contacts = ({ contacts, search, setcontact }) => {
   )
 }
 
-const ContactList = ({setcontact}) => {
+const ContactList = ({setcontact, open_pg}) => {
 
   const contacts = useContacts();
 
@@ -23,7 +23,7 @@ const ContactList = ({setcontact}) => {
 
   return (
     <>
-      <main className='h-full contactcon'>
+      <main className={`h-full contactcon ${open_pg ? 'contact-close' : 'contact-open'}`}>
         
         <div className='font-bold p-[20px] pb-[7px] text-[22px]'>
           Friends

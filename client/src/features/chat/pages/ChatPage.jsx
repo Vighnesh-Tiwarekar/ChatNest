@@ -52,7 +52,7 @@ const ChatPage = () => {
         </aside>
 
         <section className='chatsec flex'>
-          {!open_pg && <ContactList setcontact={setcontact}></ContactList>}
+          <ContactList setcontact={setcontact} open_pg={open_pg}></ContactList>
           <Chats contact={contact} name={name}></Chats>
         </section>
 

@@ -2,7 +2,34 @@
 {
     width: clamp(320px,28.125rem,450px);
     border-right: 3px solid var(--comp-color);
+    transition: all 0.5s ease-in-out;
+    overflow: hidden;
 }
+
+.contactcon > * {
+    transition: opacity 0.6s ease-in-out;
+}
+
+.contact-open
+{
+    width: clamp(320px,28.125rem,450px);
+}
+
+.contact-open > * {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.contact-close
+{
+    width: 0px;
+}
+
+.contact-close > * {
+  opacity: 0;
+  pointer-events: none;
+}
+
 
 .contactcon>div:nth-child(2)
 {
