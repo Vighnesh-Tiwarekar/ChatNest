@@ -1,11 +1,11 @@
 import axios from "axios";
 
 
-export const get_contacts = async () => {
+export const get_friends = async () => {
 
     try {
 
-        const res = await axios.get(`${import.meta.env.VITE_BASE_API_URL}/chat/get-contacts`,
+        const res = await axios.get(`${import.meta.env.VITE_BASE_API_URL}/chat/get-friends`,
             {
                 withCredentials: true, // send cookies if needed
                 headers: {

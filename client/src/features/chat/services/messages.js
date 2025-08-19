@@ -1,13 +1,13 @@
 import axios from "axios";
 
 
-export const get_messages = async(contact_name) => {
+export const get_messages = async(friend_name) => {
 
     try{
 
         const res = await axios.post(`${import.meta.env.VITE_BASE_API_URL}/chat/get-messages`,
             {
-                contact_name: contact_name
+                friend_name: friend_name
             },
             {
                 withCredentials: true, // send cookies if needed

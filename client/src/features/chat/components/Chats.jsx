@@ -5,9 +5,9 @@ import socket from '../services/socket';
 import send from '../../../assets/send.png'
 import '../../../shared/css/Chats.css'
 
-const Chats = ({ contact, name }) => {
+const Chats = ({ friend, name }) => {
 
-  const { data, isLoading, error } = useMessage(contact);
+  const { data, isLoading, error } = useMessage(friend);
   const [Messages, setMessages] = useState([])
   const [mssg, setmssg] = useState('')
 
@@ -42,20 +42,20 @@ const Chats = ({ contact, name }) => {
 
     if (!mssg.trim()) return;
 
-    socket.emit('send-message', name, contact, mssg);
+    socket.emit('send-message', name, friend, mssg);
 
     setmssg('')
 
   }
 
-  if (contact) {
+  if (friend) {
 
     return (
 
       <main className='flex flex-col flex-1 h-full justify-between'>
 
         <section className='glass font-bold p-[15px] text-[22px] h-fit'>
-          {contact}
+          {friend}
         </section>
 
 

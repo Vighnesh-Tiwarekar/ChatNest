@@ -3,12 +3,12 @@ import { useQuery } from '@tanstack/react-query';
 
 
 
-export default function useMessage(contact) {
+export default function useMessage(friend) {
 
     return useQuery({
-        queryKey: ['friend',contact],
-        queryFn: () => get_messages(contact),
-        enabled: !!contact
+        queryKey: ['friend',friend],
+        queryFn: () => get_messages(friend),
+        enabled: !!friend
     })
 
 }

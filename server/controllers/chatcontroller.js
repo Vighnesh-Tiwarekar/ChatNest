@@ -2,7 +2,7 @@ import { chatMessages, chatRoom } from "../schema/chatschema.js"
 import { userlogin } from "../schema/loginschema.js"
 
 
-export const get_contacts = async (req, res) => {
+export const get_friends = async (req, res) => {
 
     try {
 
@@ -13,7 +13,7 @@ export const get_contacts = async (req, res) => {
         },
         )
 
-        const contacts = rooms.map(room => {
+        const friends = rooms.map(room => {
             return room.users.find(user => user !== username)
         })
 
@@ -23,7 +23,7 @@ export const get_contacts = async (req, res) => {
         //     { username: 1, _id: 0 }              
         // )
 
-        res.status(201).json(contacts)
+        res.status(201).json(friends)
 
     }
     catch (err) {
@@ -35,18 +35,12 @@ export const get_contacts = async (req, res) => {
 export const get_messages = async (req, res) => {
 
     try {
-
-        console.log('requesting messages')
-
+        
         if (!req.chatRoom) {
             return res.status(400).json({ message: 'Missing chatRoom ID' })
         }
 
-        console.log('jj')
-
         const messages = await chatMessages.find({ chatRoom: req.chatRoom })
-
-        console.log(messages)
 
         res.status(202).json(messages)
 

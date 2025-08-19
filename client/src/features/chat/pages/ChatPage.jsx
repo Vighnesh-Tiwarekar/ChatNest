@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import '../../../shared/css/ChatPage.css'
-import ContactList from '../components/ContactList'
+import FriendList from '../components/FriendList'
 import Chats from '../components/Chats'
 import Navbar from '../../../shared/ui_components/Navbar'
 import socket from '../services/socket'
@@ -10,7 +10,7 @@ const ChatPage = () => {
 
   const [open_pg, setopen_pg] = useState(false)
   const [mobview, setmobview] = useState(false)
-  const [contact, setcontact] = useState('')
+  const [friend, setfriend] = useState('')
   const [name, setname] = useState('')
 
   useEffect(() => {
@@ -52,8 +52,8 @@ const ChatPage = () => {
         </aside>
 
         <section className='chatsec flex'>
-          <ContactList setcontact={setcontact} open_pg={open_pg}></ContactList>
-          <Chats contact={contact} name={name}></Chats>
+          <FriendList setfriend={setfriend} open_pg={open_pg}></FriendList>
+          <Chats friend={friend} name={name}></Chats>
         </section>
 
       </main>}
@@ -61,7 +61,7 @@ const ChatPage = () => {
       {mobview && <main className='chatpage-con relative'>
 
         {!open_pg && <div>
-          <ContactList setcontact={setcontact}></ContactList>
+          <FriendList setfriend={setfriend}></FriendList>
         </div>}
 
 

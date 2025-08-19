@@ -27,10 +27,10 @@ export const initSocket = (server) => {
 
         })
 
-        socket.on('send-message', async (name, contact, mssg) => {
+        socket.on('send-message', async (name, friend, mssg) => {
 
             const room = await chatRoom.findOne({
-                users: { $all: [name, contact] }
+                users: { $all: [name, friend] }
             }).select('_id');
 
             if (!room) {

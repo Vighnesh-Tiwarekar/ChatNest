@@ -3,14 +3,14 @@ import { chatRoom } from '../schema/chatschema.js'
 export const check_room = async (req, res, next) => {
   try {
 
-    const contact = req.body.contact_name
+    const friend = req.body.friend_name
     const username = req.username
 
-    if (!username || !contact) {
+    if (!username || !friend) {
       return res.status(400).json({ message: 'Missing user info' })
     }
 
-    const users = [username, contact].sort()
+    const users = [username, friend].sort()
 
 
     let room = await chatRoom.findOne({ users })
