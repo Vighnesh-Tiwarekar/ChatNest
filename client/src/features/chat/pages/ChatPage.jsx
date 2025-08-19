@@ -5,10 +5,12 @@ import Chats from '../components/Chats'
 import Navbar from '../../../shared/ui_components/Navbar'
 import socket from '../services/socket'
 import { get_name } from '../services/name'
+import { UserList } from '../components/UserList'
+import SideBar from '../components/SideBar'
 
 const ChatPage = () => {
 
-  const [open_pg, setopen_pg] = useState(false)
+  const [open_pg, setopen_pg] = useState('friends')
   const [mobview, setmobview] = useState(false)
   const [friend, setfriend] = useState('')
   const [name, setname] = useState('')
@@ -48,11 +50,13 @@ const ChatPage = () => {
       {!mobview && <main className='chatpage-con relative pt-[5vh]'>
 
         <aside className='absolute w-fit left-0'>
-          <Navbar setopen_pg={setopen_pg}></Navbar>
+          <Navbar open_pg={open_pg} setopen_pg={setopen_pg}></Navbar>
         </aside>
 
         <section className='chatsec flex'>
-          <FriendList setfriend={setfriend} open_pg={open_pg}></FriendList>
+          
+          <SideBar open_pg={open_pg} setfriend={setfriend} ></SideBar>
+
           <Chats friend={friend} name={name}></Chats>
         </section>
 

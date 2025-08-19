@@ -15,7 +15,7 @@ const Friends = ({ friends, search, setfriend }) => {
   )
 }
 
-const FriendList = ({setfriend, open_pg}) => {
+const FriendList = ({setfriend}) => {
 
   const friends = useFriends();
 
@@ -23,7 +23,7 @@ const FriendList = ({setfriend, open_pg}) => {
 
   return (
     <>
-      <main className={`h-full friendcon ${open_pg ? 'friend-close' : 'friend-open'}`}>
+      <main className={`h-full friendcon`}>
         
         <div className='font-bold p-[20px] pb-[7px] text-[22px]'>
           Friends
