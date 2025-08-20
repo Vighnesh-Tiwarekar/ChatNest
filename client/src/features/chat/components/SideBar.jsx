@@ -2,8 +2,9 @@ import React, { useEffect, useState } from 'react'
 import FriendList from './FriendList'
 import '../../../shared/css/SideBar.css'
 import { UserList } from './UserList'
+import FriendRequest from './FriendRequest'
 
-const SideBar = ({ open_pg, setfriend }) => {
+const SideBar = ({ open_pg, setfriend, name }) => {
 
     const [visiblePage, setvisiblePage] = useState('');
 
@@ -36,6 +37,11 @@ const SideBar = ({ open_pg, setfriend }) => {
             <div className={visiblePage === 'users' ? '' : 'hidden'}>
                 <UserList />
             </div>
+
+            <div className={visiblePage === 'requests' ? '' : 'hidden'}>
+                <FriendRequest name={name} />
+            </div>
+
 
         </main>
     )

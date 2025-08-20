@@ -55,7 +55,7 @@ const ChatPage = () => {
 
         <section className='chatsec flex'>
           
-          <SideBar open_pg={open_pg} setfriend={setfriend} ></SideBar>
+          <SideBar open_pg={open_pg} setfriend={setfriend} name={name}></SideBar>
 
           <Chats friend={friend} name={name}></Chats>
         </section>

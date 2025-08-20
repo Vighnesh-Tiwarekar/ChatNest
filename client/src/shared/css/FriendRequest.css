@@ -1,0 +1,27 @@
+.request-choice {
+  transition: all 0.3s ease-in-out;
+  overflow: hidden;
+  max-height: 0; /* start closed */
+  opacity: 0;
+}
+
+.choice-open {
+  max-height: 83px; /* pick a safe value larger than dropdown */
+  opacity: 1;
+}
+
+.choice-close {
+  max-height: 0;
+  opacity: 0;
+}
+
+.request-choice > div {
+  background-color: rgb(53, 53, 53);
+  border: 1px solid var(--comp-color);
+  padding: 8px 10px;
+}
+
+.request-choice > div:hover
+{
+    background-color: black;
+}

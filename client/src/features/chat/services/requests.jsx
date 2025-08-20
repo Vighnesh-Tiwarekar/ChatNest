@@ -1,11 +1,11 @@
 import axios from "axios";
 
 
-export const get_users = async () => {
+export const get_requests = async () => {
 
     try {
 
-        const res = await axios.get(`${import.meta.env.VITE_BASE_API_URL}/services/get-users`,
+        const res = await axios.get(`${import.meta.env.VITE_BASE_API_URL}/chat/get-requests`,
             {
                 withCredentials: true, // send cookies if needed
                 headers: {
@@ -18,13 +18,12 @@ export const get_users = async () => {
         {
             return res.data
         }
-        else{
-            return []
-        }
+
+        return []
 
     }
     catch (err) {
-        console.log(err);
-        return [];
+        console.log(err)
+        return []
     }
 }

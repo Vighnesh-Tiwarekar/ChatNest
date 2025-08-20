@@ -32,36 +32,6 @@ export const get_friends = async (req, res) => {
     }
 }
 
-export const get_users = async (req, res) => {
-
-    try {
-
-        const username = req.username
-
-        const rooms = await chatRoom.find({
-            users: { $in: [username] },
-        },
-        )
-
-        const users = rooms.map(room => {
-            return room.users.find(user => user !== username)
-        })
-
-
-        // const contacts = await userlogin.find(
-        //     { username: { $ne: req.username } }, 
-        //     { username: 1, _id: 0 }              
-        // )
-
-        res.status(201).json(users)
-
-    }
-    catch (err) {
-        console.log(`Error: ${err}`)
-        res.status(500).json({ message: 'Internal Server Error' })
-    }
-}
-
 export const get_messages = async (req, res) => {
 
     try {
