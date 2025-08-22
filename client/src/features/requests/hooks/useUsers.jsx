@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { get_users } from "../services/users"
+import { get_users } from "../../chat/services/users"
 
 
 const useUsers = () => {

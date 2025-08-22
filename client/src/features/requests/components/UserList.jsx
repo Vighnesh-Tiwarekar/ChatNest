@@ -1,19 +1,42 @@
 import React, { useState } from 'react'
 import useUsers from '../hooks/useUsers';
 import Spinner from '../../../shared/ui_components/Spinner.jsx';
+import { Confirm } from './Confirm';
+import { send_request } from '../services/requests';
 
 
 const Friends = ({ users, search }) => {
+
+    const [contact, setcontact] = useState('')
+
+    const confirm_send = (name) => {
+
+        setcontact(name);
+    }
+
+    const handleConfirm = (response) => {
+        if (response === true) {
+
+            send_request(contact)
+            
+        }
+        
+        setcontact('');
+    };
+
     return (
         <div className="friend-list">
             {search &&
                 users
                     .filter(user => user.username.toLowerCase().includes(search.toLowerCase()))
                     .map((user, index) => (
-                        <div key={index} className="friend-item p-[18px] glass txteffect">
+                        <div key={index} className="friend-item p-[18px] glass txteffect" onClick={() => confirm_send(user.username)}>
                             {user.username}
                         </div>
                     ))}
+
+            {contact && <Confirm handleConfirm={handleConfirm} contact={contact} ></Confirm>}
+
         </div>
     )
 }

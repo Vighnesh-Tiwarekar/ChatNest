@@ -8,7 +8,7 @@ const random_num = () => {
 const otp_generator = () => {
 
     const otp = `${random_num()}${random_num()}${random_num()}${random_num()}${random_num()}${random_num()}`
-
+    console.log(otp)
     return otp;
 
 }

@@ -1,10 +1,14 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import '../css/Navbar.css'
 import friends from '../../assets/friends.png'
 import search_users from '../../assets/search_users.png'
 import add_friend from '../../assets/add-friend.png'
+import add_friend_alert from '../../assets/add-friend-blue.png'
+import { useRequestCount } from '../../features/requests/hooks/useRequestCount'
 
 const Navbar = ({ open_pg, setopen_pg }) => {
+
+  const count = useRequestCount();
 
   const set_page = (page) => {
 
@@ -30,7 +34,7 @@ const Navbar = ({ open_pg, setopen_pg }) => {
         </div>
 
         <div className='w-fit mt-[0.2vh]' onClick={() => set_page('requests')}>
-          <img className='h-[3.8vh] invert-100' src={add_friend} alt="" />
+          <img className='h-[3.8vh]' src={count > 0 ? add_friend_alert : add_friend} alt="" />
         </div>
 
       </main>

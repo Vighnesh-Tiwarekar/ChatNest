@@ -5,7 +5,6 @@ import Chats from '../components/Chats'
 import Navbar from '../../../shared/ui_components/Navbar'
 import socket from '../services/socket'
 import { get_name } from '../services/name'
-import { UserList } from '../components/UserList'
 import SideBar from '../components/SideBar'
 
 const ChatPage = () => {

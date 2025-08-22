@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import FriendList from './FriendList'
 import '../../../shared/css/SideBar.css'
-import { UserList } from './UserList'
-import FriendRequest from './FriendRequest'
+import { UserList } from '../../requests/components/UserList'
+import FriendRequest from '../../requests/components/FriendRequest'
 
 const SideBar = ({ open_pg, setfriend, name }) => {
 

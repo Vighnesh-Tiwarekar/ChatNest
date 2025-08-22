@@ -1,5 +1,6 @@
 import { userlogin } from "../schema/loginschema.js";
 import { requests } from "../schema/requestschema.js";
+import { chatRoom } from "../schema/chatschema.js"
 
 
 export const get_username = async (req, res) => {
@@ -26,7 +27,7 @@ export const get_users = async (req, res) => {
 
 
         const users = await userlogin.find({
-            name: { $nin: [req.username, ...friends] }
+            username: { $nin: [req.username, ...friends] }
         }, { _id: 0, username: 1 }).lean()
 
         res.status(201).json(users);
@@ -42,7 +43,11 @@ export const get_requests = async (req, res) => {
 
     try {
 
-        const request = await requests.find({}).lean()
+        const request = await requests.find({
+           $or: [
+            {sender: req.username},
+            {receiver: req.username}
+        ]}).lean()
 
         res.status(200).json(request);
 
@@ -61,9 +66,18 @@ export const send_request = async (req, res) => {
         const details = req.body;
 
         const existing = await requests.findOne({
-            sender: req.username,
-            receiver: details.name,
-            status: { $in: ['pending', 'accepted'] }
+            $or: [
+                {
+                    sender: req.username,
+                    receiver: details.name,
+                    status: { $in: ['pending', 'accepted'] }
+                },
+                {
+                    sender: details.name,
+                    receiver: req.username,
+                    status: 'pending'
+                }
+            ]
         }).lean();
 
         if (existing) {
@@ -85,9 +99,11 @@ export const send_request = async (req, res) => {
     }
 }
 
-export const accept_request = async(req, res) => {
+export const accept_request = async (req, res) => {
 
     try {
+
+        console.log('started')
 
         const details = req.body;
 
@@ -96,13 +112,18 @@ export const accept_request = async(req, res) => {
             receiver: req.username,
             status: "pending"
         },
-        {
-            $set: { status: "accepted" }
-        }).lean();
+            {
+                $set: { status: "accepted" }
+            }).lean();
 
         if (result.modifiedCount === 0) {
             return res.status(404).json({ message: "No pending request found to accept" });
         }
+
+        console.log('created')
+        const users = [req.username, details.name ].sort()
+
+        const room = await chatRoom.create({users})
 
         res.status(200).json({ message: "Friend Request Accepted" })
 
@@ -150,9 +171,9 @@ export const reject_request = async (req, res) => {
             receiver: req.username,
             status: "pending"
         },
-        {
-            $set: { status: "rejected" }
-        }).lean();
+            {
+                $set: { status: "rejected" }
+            }).lean();
 
         if (result.modifiedCount === 0) {
             return res.status(404).json({ message: "No pending request found to reject" });
@@ -167,7 +188,7 @@ export const reject_request = async (req, res) => {
     }
 }
 
-export const active_request_count = async(req, res) => {
+export const active_request_count = async (req, res) => {
 
     try {
 
@@ -175,8 +196,8 @@ export const active_request_count = async(req, res) => {
             receiver: req.username,
             status: "pending"
         }).lean()
-
-        res.status(200).json(result.length)
+        console.log(result.length)
+        res.status(200).json({ count: result.length })
 
     }
     catch (err) {
