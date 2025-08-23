@@ -86,7 +86,11 @@ const FriendRequest = ({ name }) => {
 
     const { data, isLoading, error } = useRequests();
 
-    const [choice, setchoice] = useState(1)
+    const [choice, setchoice] = useState(() => localStorage.getItem('choice') || 1)
+
+    useEffect(() => {
+        localStorage.setItem('choice', choice)
+    }, [choice])
 
 
     return (

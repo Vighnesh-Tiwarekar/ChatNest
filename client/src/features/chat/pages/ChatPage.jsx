@@ -9,13 +9,22 @@ import SideBar from '../components/SideBar'
 
 const ChatPage = () => {
 
-  const [open_pg, setopen_pg] = useState('friends')
+  const [open_pg, setopen_pg] = useState(() => localStorage.getItem('open_pg') || 'friends')
   const [mobview, setmobview] = useState(false)
-  const [friend, setfriend] = useState('')
+  const [friend, setfriend] = useState(() => localStorage.getItem('friend') || '')
   const [name, setname] = useState('')
 
   useEffect(() => {
-    
+    localStorage.setItem('open_pg', open_pg)
+  }, [open_pg])
+
+  useEffect(() => {
+    localStorage.setItem('friend', friend)
+  }, [friend])
+
+
+  useEffect(() => {
+
     if (window.matchMedia("(max-width: 450px)").matches) {
       setmobview(true)
     }
@@ -53,7 +62,7 @@ const ChatPage = () => {
         </aside>
 
         <section className='chatsec flex'>
-          
+
           <SideBar open_pg={open_pg} setfriend={setfriend} name={name}></SideBar>
 
           <Chats friend={friend} name={name}></Chats>
