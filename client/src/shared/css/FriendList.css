@@ -1,12 +1,8 @@
-
-
-.friendcon>div:nth-child(2)
-{
-    box-shadow: 0 4px 5px 1px var(--comp-color);
-
+.friendcon > div:nth-child(2) {
+  border-bottom: 1px solid var(--comp-color);
 }
 
-.friend-item
-{
-    border-bottom: 1px solid var(--comp-color);
+.friend-item {
+  border-bottom: 1px solid var(--comp-color);
+  background-color: #151515;
 }

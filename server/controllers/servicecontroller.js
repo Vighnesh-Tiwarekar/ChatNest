@@ -70,7 +70,7 @@ export const send_request = async (req, res) => {
                 {
                     sender: req.username,
                     receiver: details.name,
-                    status: { $in: ['pending', 'accepted'] }
+                    status: { $in: ['pending', 'accepted', 'rejected'] }
                 },
                 {
                     sender: details.name,
@@ -120,7 +120,6 @@ export const accept_request = async (req, res) => {
             return res.status(404).json({ message: "No pending request found to accept" });
         }
 
-        console.log('created')
         const users = [req.username, details.name ].sort()
 
         const room = await chatRoom.create({users})
@@ -192,12 +191,17 @@ export const active_request_count = async (req, res) => {
 
     try {
 
-        const result = await requests.find({
+        const receive_result = await requests.find({
             receiver: req.username,
             status: "pending"
         }).lean()
-        console.log(result.length)
-        res.status(200).json({ count: result.length })
+
+        const sent_result = await requests.find({
+            sender: req.username,
+            status: "pending"
+        }).lean()
+
+        res.status(200).json({ count: receive_result.length, sent_count: sent_result.length })
 
     }
     catch (err) {

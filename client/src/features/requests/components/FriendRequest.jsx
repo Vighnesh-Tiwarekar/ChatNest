@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import '../../../shared/css/FriendRequest.css'
 import Spinner from '../../../shared/ui_components/Spinner'
 import useRequests from '../hooks/useRequests'
@@ -84,9 +84,10 @@ const Requests = ({ requests, choice, name }) => {
 
 const FriendRequest = ({ name }) => {
 
-    const requests = useRequests();
+    const { data, isLoading, error } = useRequests();
 
     const [choice, setchoice] = useState(1)
+
 
     return (
         <>
@@ -114,7 +115,13 @@ const FriendRequest = ({ name }) => {
 
                 </div>
 
-                {requests ? <Requests requests={requests} choice={choice} name={name} /> : <Spinner></Spinner>}
+                {isLoading ? (
+                    <Spinner />
+                ) : error ? (
+                    <div className="px-[20px] text-red-500">Failed to load friends.</div>
+                ) : (
+                    <Requests requests={data} choice={choice} name={name} />
+                )}
 
             </main>
         </>

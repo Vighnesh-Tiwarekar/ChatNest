@@ -18,9 +18,9 @@ const Friends = ({ users, search }) => {
         if (response === true) {
 
             send_request(contact)
-            
+
         }
-        
+
         setcontact('');
     };
 
@@ -30,7 +30,7 @@ const Friends = ({ users, search }) => {
                 users
                     .filter(user => user.username.toLowerCase().includes(search.toLowerCase()))
                     .map((user, index) => (
-                        <div key={index} className="friend-item p-[18px] glass txteffect" onClick={() => confirm_send(user.username)}>
+                        <div key={index} className="friend-item p-[18px] txteffect" onClick={() => confirm_send(user.username)}>
                             {user.username}
                         </div>
                     ))}
@@ -43,7 +43,7 @@ const Friends = ({ users, search }) => {
 
 export const UserList = () => {
 
-    const users = useUsers();
+    const { data, isLoading, error } = useUsers();
 
     const [search, setsearch] = useState('')
 
@@ -62,7 +62,14 @@ export const UserList = () => {
                     </div>
                 </div>
 
-                {users ? <Friends users={users} search={search} /> : <Spinner></Spinner>}
+                {isLoading ? (
+                    <Spinner />
+                ) : error ? (
+                    <div className="px-[20px] text-red-500">Failed to load requests.</div>
+                ) : (
+                    <Friends users={data} search={search} />
+                )}
+
             </main>
         </>
     )

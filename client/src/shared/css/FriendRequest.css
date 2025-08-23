@@ -16,7 +16,7 @@
 }
 
 .request-choice > div {
-  background-color: rgb(53, 53, 53);
+  background-color: #2b2b2b;
   border: 1px solid var(--comp-color);
   padding: 8px 10px;
 }

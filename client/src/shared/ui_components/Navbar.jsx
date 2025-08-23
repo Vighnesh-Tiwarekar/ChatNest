@@ -5,10 +5,25 @@ import search_users from '../../assets/search_users.png'
 import add_friend from '../../assets/add-friend.png'
 import add_friend_alert from '../../assets/add-friend-blue.png'
 import { useRequestCount } from '../../features/requests/hooks/useRequestCount'
+import { queryClient } from '../../features/auth/services/queryClient'
+
+
 
 const Navbar = ({ open_pg, setopen_pg }) => {
+  
 
-  const count = useRequestCount();
+  const { data, isLoading, error } = useRequestCount();
+
+  useEffect(() => {
+
+    if (data) {
+
+      queryClient.refetchQueries({ queryKey: ['friends'] });
+      queryClient.refetchQueries({ queryKey: ['requests'] });
+      queryClient.refetchQueries({ queryKey: ['users'] });
+    }
+
+  }, [data, queryClient])
 
   const set_page = (page) => {
 
@@ -34,7 +49,7 @@ const Navbar = ({ open_pg, setopen_pg }) => {
         </div>
 
         <div className='w-fit mt-[0.2vh]' onClick={() => set_page('requests')}>
-          <img className='h-[3.8vh]' src={count > 0 ? add_friend_alert : add_friend} alt="" />
+          <img className='h-[3.8vh]' src={data?.count > 0 ? add_friend_alert : add_friend} alt="" />
         </div>
 
       </main>

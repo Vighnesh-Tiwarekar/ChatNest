@@ -6,8 +6,8 @@ import { RouterProvider } from 'react-router-dom'
 import { router } from './routes/Router'
 import Spinner from './shared/ui_components/Spinner'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { queryClient } from './features/auth/services/queryClient'
 
-const queryClient = new QueryClient()
 
 function App() {
 

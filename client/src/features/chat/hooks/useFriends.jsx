@@ -1,24 +1,14 @@
 import { useEffect, useState } from "react"
 import { get_friends } from "../services/friends"
+import { useQuery } from "@tanstack/react-query"
 
 
 const useFriends = () => {
 
-    const [friends, setfriends] = useState(null)
-
-    useEffect(() => {
-
-        const getfriends = async () => {
-
-            const result = await get_friends();
-            setfriends(result)
-        }
-
-        getfriends()
-
-    }, [])
-
-    return friends;
+    return useQuery({
+        queryKey: ['friends'],
+        queryFn: get_friends
+    })
 
 }
 

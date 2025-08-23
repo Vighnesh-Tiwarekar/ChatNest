@@ -1,24 +1,14 @@
 import { useEffect, useState } from "react"
 import { get_requests } from "../services/requests"
+import { useQuery } from "@tanstack/react-query"
 
 
 const useRequests = () => {
 
-    const [requests, setrequests] = useState(null)
-
-    useEffect(() => {
-
-        const getrequests = async () => {
-
-            const result = await get_requests();
-            setrequests(result)
-        }
-
-        getrequests()
-
-    }, [])
-
-    return requests;
+    return useQuery({
+        queryKey: ['requests'],
+        queryFn: get_requests
+    })
 
 }
 

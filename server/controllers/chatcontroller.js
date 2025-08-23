@@ -23,7 +23,7 @@ export const get_friends = async (req, res) => {
         //     { username: 1, _id: 0 }              
         // )
 
-        res.status(201).json(friends)
+        res.status(200).json(friends)
 
     }
     catch (err) {

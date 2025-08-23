@@ -1,24 +1,14 @@
 import { useEffect, useState } from "react"
 import { get_users } from "../../chat/services/users"
+import { useQuery } from "@tanstack/react-query"
 
 
 const useUsers = () => {
 
-    const [users, setusers] = useState(null)
-
-    useEffect(() => {
-
-        const getusers = async () => {
-
-            const result = await get_users();
-            setusers(result)
-        }
-
-        getusers()
-
-    }, [])
-
-    return users;
+    return useQuery({
+        queryKey: ['users'],
+        queryFn: get_users
+    })
 
 }
 

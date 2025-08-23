@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import '../../../shared/css/FriendList.css'
 import Spinner from '../../../shared/ui_components/Spinner'
 import useFriends from '../hooks/useFriends'
@@ -7,7 +7,7 @@ const Friends = ({ friends, search, setfriend }) => {
   return (
     <div className="friend-list">
       {friends.filter(user => user.toLowerCase().includes(search.toLowerCase())).map((user, index) => (
-        <div key={index} className="friend-item p-[18px] glass txteffect" onClick={()=>setfriend(user)}>
+        <div key={index} className="friend-item p-[18px] txteffect" onClick={() => setfriend(user)}>
           {user}
         </div>
       ))}
@@ -15,16 +15,16 @@ const Friends = ({ friends, search, setfriend }) => {
   )
 }
 
-const FriendList = ({setfriend}) => {
+const FriendList = ({ setfriend }) => {
 
-  const friends = useFriends();
+  const { data, isLoading, error } = useFriends();
 
   const [search, setsearch] = useState('')
 
   return (
     <>
       <main className={`h-full friendcon`}>
-        
+
         <div className='font-bold p-[20px] pb-[7px] text-[22px]'>
           Friends
         </div>
@@ -36,7 +36,14 @@ const FriendList = ({setfriend}) => {
           </div>
         </div>
 
-        {friends ? <Friends friends={friends} search={search} setfriend={setfriend} /> : <Spinner></Spinner>}
+        {isLoading ? (
+          <Spinner />
+        ) : error ? (
+          <div className="px-[20px] text-red-500">Failed to load friends.</div>
+        ) : (
+          <Friends friends={data || []} search={search} setfriend={setfriend} />
+        )}
+        
       </main>
     </>
   )

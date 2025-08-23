@@ -1,23 +1,15 @@
 import { useEffect, useState } from "react"
 import { get_request_count } from "../services/requests";
+import { useQuery } from "@tanstack/react-query"
 
 
 export const useRequestCount = () => {
 
-    const [count, setcount] = useState(0);
-
-    useEffect(()=> {
-
-        const get_count = async() => {
-
-            const result = await get_request_count();
-            setcount(result)
-        }
-
-        get_count()
-
-    },[])
-
-    return count;
+    return useQuery({
+        queryKey: ['count'],
+        queryFn: get_request_count,
+        staleTime: 1000 * 60,
+        refetchInterval: 10000
+    })
 
 }

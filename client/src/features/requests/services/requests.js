@@ -1,10 +1,11 @@
 import axios from "axios";
-
+import { queryClient } from "../../auth/services/queryClient";
 
 export const get_requests = async () => {
 
-    try {
+    console.log('req')
 
+    try {
         const res = await axios.get(`${import.meta.env.VITE_BASE_API_URL}/services/get-requests`,
             {
                 withCredentials: true, // send cookies if needed
@@ -31,6 +32,8 @@ export const get_request_count = async () => {
 
     try {
 
+        console.log('Count Request')
+
         const res = await axios.get(`${import.meta.env.VITE_BASE_API_URL}/services/active-requests`,
             {
                 withCredentials: true, // send cookies if needed
@@ -41,8 +44,7 @@ export const get_request_count = async () => {
         );
 
         if (res.status == 200) {
-            console.log('Count', res.data.count)
-            return res.data.count;
+            return res.data;
         }
 
         return 0;
@@ -81,7 +83,7 @@ export const send_request = async (contact) => {
 export const accept_request = async (name) => {
 
     try {
-        console.log('hh')
+
         const result = await axios.patch(`${import.meta.env.VITE_BASE_API_URL}/services/accept-request`,
             {
                 name: name
@@ -93,6 +95,13 @@ export const accept_request = async (name) => {
                     'Content-Type': 'application/json'
                 }
             })
+
+        if (result.status == 200) {
+
+            queryClient.refetchQueries({ queryKey: ['friends'] });
+            queryClient.refetchQueries({ queryKey: ['requests'] });
+            queryClient.refetchQueries({ queryKey: ['users'] });
+        }
 
 
     }
@@ -116,6 +125,13 @@ export const reject_request = async (name) => {
                 }
             })
 
+        if (result.status == 200) {
+
+            queryClient.refetchQueries({ queryKey: ['friends'] });
+            queryClient.refetchQueries({ queryKey: ['requests'] });
+            queryClient.refetchQueries({ queryKey: ['users'] });
+        }
+
 
     }
     catch (err) {
@@ -138,6 +154,12 @@ export const cancel_request = async (name) => {
                 }
             })
 
+        if (result.status == 200) {
+
+            queryClient.refetchQueries({ queryKey: ['friends'] });
+            queryClient.refetchQueries({ queryKey: ['requests'] });
+            queryClient.refetchQueries({ queryKey: ['users'] });
+        }
 
     }
     catch (err) {

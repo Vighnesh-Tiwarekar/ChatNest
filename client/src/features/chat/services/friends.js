@@ -14,7 +14,7 @@ export const get_friends = async () => {
             }
         );
 
-        if(res.status == 201)
+        if(res.status == 200)
         {
             return res.data
         }
